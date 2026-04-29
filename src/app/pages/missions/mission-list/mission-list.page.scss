@@ -1,0 +1,280 @@
+/*CONFIGURACIÓN GENERAL */
+ion-content {
+  --background: #1a1a1a;
+}
+
+ion-toolbar {
+  --background: #1a1a1a;
+  --color: white;
+  
+  ion-title {
+    font-weight: 800;
+    font-size: 1.5rem;
+  }
+}
+
+/*FOOTER*/
+ion-footer {
+  background: transparent; 
+  padding-bottom: 20px;
+  pointer-events: none;
+}
+
+/*DASHBOARD DEL USUARIO*/
+.user-dashboard {
+  pointer-events: auto; 
+  background: #262626;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.5); 
+  padding: 15px;
+  width: 70%; 
+  margin: 0 auto; 
+
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+
+  .user-info-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .my-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 2px solid #22c55e;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .text-info {
+    h3 {
+      margin: 0;
+      color: white;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .my-rank {
+      color: #22c55e;
+      font-family: monospace;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+  }
+}
+
+/*ESTILOS DEL BUSCADOR*/
+.custom-searchbar {
+  width: 25%;
+  padding-right: 16px;
+  
+  --background: #262626;
+  --color: white;
+  --placeholder-color: #9ca3af;
+  --icon-color: #9ca3af;
+  --border-radius: 20px;
+  --box-shadow: none;
+
+  border: none;
+  border-radius: 20px;
+
+  ::ng-deep .searchbar-input-container {
+    height: 36px;
+  }
+}
+
+/*PESTAÑAS*/
+ion-segment {
+  background: #262626;
+  width: 70%;
+  margin: 20px auto;
+  border-radius: 8px;
+  padding: 4px;
+
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+
+  ion-segment-button {
+    --color: #d1d5db; 
+    --color-checked: #ffffff;
+    --indicator-color: #22c55e;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+}
+
+/*LAYOUT GRID*/
+ion-list {
+  background: transparent !important;
+  padding: 0;
+  width: 70%; 
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr; 
+  }
+
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+}
+
+/*TARJETAS*/
+ion-card {
+  --background: #262626;
+  position: relative; 
+  margin: 0;
+  border-radius: 12px;
+  border: 1px solid #333;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  overflow: visible;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: #22c55e;
+  }
+
+  ion-card-header {
+    padding-bottom: 5px;
+
+    ion-card-title {
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-top: 10px;
+      line-height: 1.3;
+      padding-right: 50px;
+    }
+
+    ion-badge {
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-weight: 900;
+      font-size: 0.8rem;
+    }
+
+    .ryo-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      color: #facc15;
+      font-weight: bold;
+      font-size: 1rem;
+      font-family: monospace;
+      text-shadow: 0 0 5px rgba(250, 204, 21, 0.2);
+    }
+  }
+
+  ion-card-content {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding-top: 5px;
+
+    p {
+      min-height: 40px;
+    }
+
+    .action-area {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+      gap: 15px;
+    }
+
+    .assignee-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-grow: 1;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .mission-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #333;
+      border: 2px solid #555;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .ninja-name {
+      color: #e5e7eb;
+      font-weight: 700;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .status-indicator {
+      padding: 8px 16px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      border: 2px solid #22c55e;
+      border-radius: 8px;
+      color: #22c55e;
+      cursor: pointer;
+      transition: background 0.3s;
+      white-space: nowrap;
+      flex-shrink: 0;
+
+      &:hover {
+        background: rgba(34, 197, 94, 0.15);
+      }
+
+      &.full-width {
+        width: 100%;
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 50px;
+  color: #555;
+  width: 100%;
+  grid-column: 1 / -1; 
+  
+  ion-icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}

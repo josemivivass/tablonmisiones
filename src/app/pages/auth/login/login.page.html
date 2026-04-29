@@ -1,0 +1,47 @@
+<ion-content class="konoha-bg">
+  <div class="login-container">
+    
+    <div class="logo-area">
+      <div class="avatar-circle">
+        <ion-icon name="log-in"></ion-icon>
+      </div>
+      <h1>Acceso Shinobi</h1>
+      <p>Desencripta tu pergamino para entrar.</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      
+      <ion-item class="custom-input" lines="none">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <div class="input-wrapper">
+          <ion-label position="stacked">NOMBRE SHINOBI</ion-label>
+          <ion-input type="text" formControlName="username" placeholder="ej: Naruto"></ion-input>
+        </div>
+      </ion-item>
+
+      <ion-item class="custom-input" lines="none">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <div class="input-wrapper">
+          <ion-label position="stacked">SELLO DE SEGURIDAD</ion-label>
+          <ion-input type="password" formControlName="password" placeholder="••••••••"></ion-input>
+        </div>
+      </ion-item>
+
+      <ion-button 
+        type="submit" 
+        expand="block" 
+        class="submit-btn" 
+        [disabled]="!loginForm.valid || isLoading">
+        <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+        <span *ngIf="!isLoading">DESENCRIPTAR ACCESO</span>
+      </ion-button>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <p style="color: #888;">¿Nuevo en la aldea? 
+            <a routerLink="/register" style="color: #22c55e; text-decoration: none;">Regístrate aquí</a>
+        </p>
+      </div>
+
+    </form>
+  </div>
+</ion-content>

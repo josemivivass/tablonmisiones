@@ -1,0 +1,134 @@
+/* Fondo global oscuro */
+.konoha-bg {
+  --background: #1a1a1a;
+  --color: white;
+}
+
+/* Toolbar transparente */
+.transparent-toolbar {
+  --background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Contenedor principal centrado */
+.login-container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+/* Área del Logo */
+.logo-area {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  margin-top: 3rem;
+  width: 100%;
+
+  .icon-wrapper {
+    display: inline-flex;
+    padding: 20px;
+    border-radius: 50%;
+    background: rgba(34, 197, 94, 0.1); 
+    margin-bottom: 1rem;
+    border: 2px solid #22c55e; 
+
+    ion-icon {
+      font-size: 3.5rem;
+      color: #22c55e;
+    }
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0.5rem 0;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+  }
+
+  p {
+    color: #888;
+    margin: 0;
+    font-size: 1rem;
+  }
+}
+
+/* Formulario */
+form {
+  width: 35%;
+  min-width: 320px;
+}
+
+/* Estilo personalizado de los inputs */
+.custom-input {
+  --background: #262626;
+  --color: white;
+  --min-height: 70px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  margin-bottom: 1rem;
+  align-items: center;
+  transition: border-color 0.3s ease;
+
+  /* Borde verde al enfocar */
+  &.item-has-focus {
+    border-color: #22c55e;
+  }
+
+  ion-icon {
+    margin-right: 12px;
+    font-size: 1.4rem;
+    align-self: center;
+    color: #666;
+  }
+
+  .input-wrapper {
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  ion-label {
+    color: #888 !important;
+    font-size: 0.75rem !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    transform: none !important;
+  }
+
+  ion-input, ion-select {
+    --padding-start: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    --placeholder-color: #555;
+    --placeholder-opacity: 1;
+  }
+}
+
+/* Botón Verde Principal */
+.submit-btn {
+  --background: #22c55e; /* VERDE */
+  --background-hover: #16a34a;
+  --color: #000;
+  --border-radius: 12px;
+  font-weight: 800;
+  font-size: 1rem;
+  margin-top: 2rem;
+  height: 55px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  /* Sombra verde */
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+/* Ajuste para el botón de volver */
+ion-back-button {
+  --color: #22c55e;
+}

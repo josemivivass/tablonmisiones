@@ -1,0 +1,145 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" color="light">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+        VOLVER
+      </ion-button>
+    </ion-buttons>
+    <ion-title>CENTRO TÁCTICO</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="konoha-detail-bg">
+
+  <div class="loading-container" *ngIf="isLoading">
+    <ion-spinner name="crescent" color="warning"></ion-spinner>
+    <p>Desencriptando pergamino...</p>
+    <small>{{ debugInfo }}</small>
+  </div>
+
+  <div *ngIf="!isLoading && !mission" class="error-container">
+    <h2 style="color: #ef4444;">Misión no encontrada</h2>
+    <p>{{ debugInfo }}</p>
+    <ion-button (click)="goBack()" color="light" fill="outline">Regresar</ion-button>
+  </div>
+
+  <div class="detail-layout" *ngIf="!isLoading && mission">
+    
+    <aside class="mission-sidebar">
+      <div class="info-card">
+        <span class="rank-tag" [attr.data-rank]="mission.rankRequirement">
+          RANGO {{ mission.rankRequirement }}
+        </span>
+        
+        <h3>{{ mission.title }}</h3>
+        
+        <div class="status-badge" [class]="mission.status">
+          <div class="dot"></div> 
+          {{ mission.status.replace('_', ' ') }}
+        </div>
+
+        <div class="reward-box">
+          ¥{{ mission.reward | number }}
+        </div>
+      </div>
+    </aside>
+
+    <main class="mission-main">
+      
+      <h1>INFORME DE MISION</h1>
+      <p class="description">{{ mission.description }}</p>
+      
+      <hr class="divider">
+
+      <div class="action-section" *ngIf="mission.status === 'DISPONIBLE'">
+        <div class="lock-icon">
+          <ion-icon name="alert-circle-outline"></ion-icon>
+        </div>
+        <p class="hint">Requiere Rango {{ mission.rankRequirement }} o superior.</p>
+
+        <ion-button 
+          *ngIf="canAccept" 
+          (click)="acceptMission()" 
+          expand="block"
+          class="action-btn orange-btn">
+          ACEPTAR MISIÓN
+        </ion-button>
+
+        <div *ngIf="!canAccept" class="error-msg">
+          Rango Insuficiente
+        </div>
+      </div>
+
+      <div class="action-section progress-state" *ngIf="mission.status === 'EN_CURSO'">
+        
+        <div *ngIf="!isAssignedToMe" class="locked-state">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <p>Misión asignada al agente: <strong style="color:#f97316">{{ mission.acceptedByNinjaName }}</strong></p>
+          <ion-avatar style="margin: 15px auto; width: 64px; height: 64px;">
+            <img [src]="'https://api.dicebear.com/9.x/bottts/svg?seed=' + (mission.acceptedByNinjaName || 'unknown')" [alt]="mission.acceptedByNinjaName" />
+          </ion-avatar>
+        </div>
+
+        <div *ngIf="isAssignedToMe">
+          <h3><ion-icon name="camera-outline"></ion-icon> Reporte de Campo</h3>
+          
+          <div class="report-form">
+            
+            <ion-item lines="none" class="custom-input">
+              <ion-label position="stacked">INFORME ESCRITO</ion-label>
+              <ion-textarea 
+                [(ngModel)]="reportText" 
+                rows="6" 
+                placeholder="Describe los resultados de la misión...">
+              </ion-textarea>
+            </ion-item>
+
+            <div class="file-upload-zone">
+              <input type="file" id="fileInput" (change)="onFileSelected($event)" style="display: none;">
+              
+              <label for="fileInput" class="upload-btn">
+                <ion-icon name="cloud-upload-outline"></ion-icon>
+                {{ evidenceFile ? evidenceFile.name : 'ADJUNTAR EVIDENCIA (IMG/PDF)' }}
+              </label>
+
+              <ion-button *ngIf="evidenceFile" fill="clear" color="danger" (click)="evidenceFile = null">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </div>
+
+            <div class="button-row">
+              <ion-button (click)="abandonMission()" color="danger" fill="outline">
+                ABANDONAR
+              </ion-button>
+
+              <ion-button 
+                (click)="submitReport()" 
+                [disabled]="!canSubmit"
+                class="action-btn orange-btn">
+                ENVIAR REPORTE
+                <ion-icon name="send-outline" slot="end"></ion-icon>
+              </ion-button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="action-section completed-state" *ngIf="mission.status === 'COMPLETADA'">
+        <div class="scroll-paper">
+          <ion-icon name="checkmark-circle-outline" class="stamp"></ion-icon>
+          <h2>MISIÓN CUMPLIDA</h2>
+          <p>El reporte ha sido archivado en la Torre Hokage.</p>
+          <div *ngIf="mission.acceptedByNinjaName" style="margin-top: 15px; display: flex; flex-direction: column; align-items: center;">
+            <p style="margin-bottom: 5px;">Completada por: <strong>{{ mission.acceptedByNinjaName }}</strong></p>
+            <ion-avatar style="width: 50px; height: 50px;">
+              <img [src]="'https://api.dicebear.com/9.x/bottts/svg?seed=' + (mission.acceptedByNinjaName || 'unknown')" [alt]="mission.acceptedByNinjaName" />
+            </ion-avatar>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</ion-content>
